@@ -1,3 +1,4 @@
+# Default processing2 ignores
 .DS_Store
 applet
 application.linux32
@@ -5,3 +6,10 @@ application.linux64
 application.windows32
 application.windows64
 application.macosx
+
+# Emacs backup junk
+*~
+[#]*[#]
+
+# Output directory
+out
