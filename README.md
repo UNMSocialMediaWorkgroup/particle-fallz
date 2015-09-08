@@ -1,6 +1,9 @@
 # Particle Fallz
 This edition of Particle Falls runs on a horizontal screen.
 
+## Processing
+This project requires Processing 3.
+
 ## Running
 
 A `Makefile` is included which allows command line running of this
