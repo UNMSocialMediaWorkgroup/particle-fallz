@@ -3,7 +3,7 @@ TestScreen screen = new TestScreen();
 
 
 void setup() {
-  size(640, 480);
+  size(320, 240);
   engine.setScreen(screen);
   engine.setUDPListener(new SimpleUDPListener());
   engine.setUDPParser(new PerByteUDPParser());
