@@ -2,6 +2,9 @@ public final class Vector2 {
   private final float x;
   private final float y;
 
+  public static final Vector2 I = new Vector2(1, 0);
+  public static final Vector2 J = new Vector2(0, 1);
+
   public Vector2(float x, float y) {
     this.x = x;
     this.y = y;

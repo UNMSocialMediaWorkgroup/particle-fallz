@@ -1,8 +1,21 @@
-public final class TestScreen implements Screen, UDPHandler {
-  float cRadius = Math.min(Screen.WIDTH, Screen.HEIGHT) / 2.0;
+public final class TestScreen implements PFZScreen, UDPHandler {
+  private static final int WIDTH = 640;
+  private static final int HEIGHT = 480;
+
+  float cRadius = Math.min(WIDTH, HEIGHT) / 2.0;
   float theta = 0.0f;
   final float deltaTheta = 0.02f;
   Vector2 ellipseVector;
+
+  @Override
+  public int getWidth() {
+    return WIDTH;
+  }
+
+  @Override
+  public int getHeight() {
+    return HEIGHT;
+  }
 
   @Override
   public void update() {
@@ -17,8 +30,8 @@ public final class TestScreen implements Screen, UDPHandler {
   public void render() {
     clear();
     fill(color(255, 128, 0));
-    ellipse(ellipseVector.getX() + Screen.WIDTH,
-            ellipseVector.getY() + Screen.HEIGHT, 20, 20);
+    ellipse(ellipseVector.getX() + WIDTH / 2.0,
+            ellipseVector.getY() + HEIGHT / 2.0, 20, 20);
   }
 
   @Override

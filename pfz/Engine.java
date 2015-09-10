@@ -1,5 +1,5 @@
 public final class Engine {
-  private Screen screen;
+  private PFZScreen screen;
   private UDPListener listener;
   private UDPParser parser;
   private UDPHandler handler;
@@ -12,7 +12,7 @@ public final class Engine {
     this.parser = parser;
   }
 
-  public void setScreen(Screen screen) {
+  public void setPFZScreen(PFZScreen screen) {
     this.screen = screen;
   }
 
