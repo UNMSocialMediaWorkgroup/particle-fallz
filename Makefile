@@ -7,6 +7,9 @@ OUTDIRS=$(OUTDIR)
 run:
 	$(P2J) --sketch=$(SKETCHDIR) --output=$(OUTDIR) --force --run
 
+present:
+	$(P2J) --sketch=$(SKETCHDIR) --output=$(OUTDIR) --force --present
+
 
 $(OUTDIRS):
 	mkdir -p $@

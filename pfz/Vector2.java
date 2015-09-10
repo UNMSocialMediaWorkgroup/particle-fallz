@@ -23,11 +23,28 @@ public final class Vector2 {
     return this.y;
   }
 
+  public Vector2 setX(float x) {
+    return new Vector2(x, this.y);
+  }
+
+  public Vector2 setY(float y) {
+    return new Vector2(this.x, y);
+  }
+
   public Vector2 add(Vector2 other) {
     return new Vector2(x + other.x, y + other.y);
   }
 
   public Vector2 mult(float scalar) {
     return new Vector2(x * scalar, y * scalar);
+  }
+
+  public float magnitude() {
+    return (float)Math.sqrt(x * x + y * y);
+  }
+
+  public Vector2 normalize() {
+    float mag = magnitude();
+    return new Vector2(x / mag, y / mag);
   }
 }
