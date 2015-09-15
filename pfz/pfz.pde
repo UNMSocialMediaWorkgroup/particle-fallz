@@ -1,7 +1,6 @@
 Engine engine = new Engine();
 NiagraScreen screen = new NiagraScreen();
 
-
 void setup() {
   size(1000, 480, P3D);
   surface.setSize(screen.getWidth(), screen.getHeight());

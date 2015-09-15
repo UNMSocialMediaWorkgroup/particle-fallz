@@ -43,7 +43,8 @@ public final class NiagraScreen implements PFZScreen, UDPHandler {
 
     for (Particle p : particles) {
       stroke(p.getColor());
-      ellipse(p.getPosition().getX(), p.getPosition().getY(), p.getSize(), p.getSize());
+      ellipse(p.getPosition().getX(), p.getPosition().getY(),
+              p.getSize(), p.getSize());
     }
 
     if (flamingParticlesLeft > 0) {
