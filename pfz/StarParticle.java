@@ -24,8 +24,8 @@ public class StarParticle implements Particle {
                  rand.nextFloat() * DELTA_DELTA_THETA;
     theta = rand.nextFloat() * TAU;
     position = new Vector2(
-               (rand.nextInt() % (maxX - minX)) + minX,
-               (rand.nextInt() % (maxY - minY)) + minY);
+           (Math.abs(rand.nextInt() % (maxX - minX))) + minX,
+           (Math.abs(rand.nextInt() % (maxY - minY))) + minY);
   }
 
   public void update() {
@@ -44,7 +44,7 @@ public class StarParticle implements Particle {
   public int getColor() {
     int channel = (int)(0xff * strength) & 0xff;
 
-    return 0xff000000      |
+    return (channel << 24) |
            (channel << 16) |
            (channel << 8)  |
            channel;

@@ -13,7 +13,7 @@ public class ShootingStarParticle
                               int maxWidth) {
     this.maxHeight = maxHeight;
     position = new Vector2(maxHeight - 1,
-                           rand.nextInt() % maxWidth);
+                           Math.abs(rand.nextInt() % maxWidth));
   }
 
   public void update() {
@@ -46,10 +46,10 @@ public class ShootingStarParticle
     } else {
       int component = (int)(0xff * strength) & 0xff;
       int x = (int)(position.getX() + tail);
-      int c = 0xff000000       |
-             (component << 16) |
-             (component << 8)  |
-             component;
+      int c = (component << 24) |
+              (component << 16) |
+              (component << 8)  |
+              component;
       if (x >= MIN_X) {
         fill(c);
         stroke(c);
