@@ -10,6 +10,9 @@ run:
 present:
 	$(P2J) --sketch=$(SKETCHDIR) --output=$(OUTDIR) --force --present
 
+compile:
+	$(P2J) --sketch=$(SKETCHDIR) --output=$(OUTDIR) --force --export
+
 
 $(OUTDIRS):
 	mkdir -p $@

@@ -3,6 +3,7 @@ StarlightScreen screen = new StarlightScreen();
 
 void setup() {
   size(237, 8);
+  screen.initSerial(this);
   surface.setSize(screen.getWidth(), screen.getHeight());
   // frame.setSize(screen.getWidth(), screen.getHeight());
   engine.setPFZScreen(screen);

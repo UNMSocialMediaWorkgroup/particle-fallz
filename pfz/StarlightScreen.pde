@@ -14,10 +14,10 @@ public class StarlightScreen extends QAUDPHandler
   private static final int GROUND_COLOR = 0xff303030;
   private static final int GROUND_HEIGHT = 5;
 
-  private static final int STAR_COUNT = 50;
+  private static final int STAR_COUNT = 100;
   private static final int SHOOTING_STAR_SPAWN_CHANCE = 50;
 
-  private static final int PULSE_SPAWN_CHANCE = 2000;
+  private static final int PULSE_SPAWN_CHANCE = 600;
 
   private Random rand = new Random();
 
@@ -42,8 +42,17 @@ public class StarlightScreen extends QAUDPHandler
   private RocketHandler rockets =
     new RocketHandler(HEIGHT, WIDTH / Rocket.HEIGHT);
 
+  private final Teensy teensy;
+  private final PImage secondCanvas;
+
   public StarlightScreen() {
+    this.secondCanvas = new PImage(WIDTH, HEIGHT);
+    this.teensy = new Teensy();
     initStars();
+  }
+
+  public void initSerial(pfz parent) {
+    this.teensy.configure(parent, WIDTH, HEIGHT);
   }
 
   @Override
@@ -113,6 +122,8 @@ public class StarlightScreen extends QAUDPHandler
     if (state != StarlightState.IDLE) {
       renderRay();
     }
+
+    renderToTeensy();
   }
 
   @Override
@@ -221,5 +232,16 @@ public class StarlightScreen extends QAUDPHandler
     if (pulse != null) {
       pulse.render();
     }
+  }
+
+  public void renderToTeensy() {
+    loadPixels();
+    secondCanvas.loadPixels();
+
+    arrayCopy(pixels, secondCanvas.pixels);
+
+    secondCanvas.updatePixels();
+
+    teensy.writeToLEDs(secondCanvas);
   }
 }
