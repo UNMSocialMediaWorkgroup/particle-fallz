@@ -7,7 +7,7 @@ void setup() {
   // frame.setSize(screen.getWidth(), screen.getHeight());
   engine.setPFZScreen(screen);
   engine.setUDPListener(new SimpleUDPListener());
-  engine.setUDPParser(new PerByteUDPParser());
+  engine.setUDPParser(new SkylightUDPParser());
   engine.setUDPHandler(screen);
 
   engine.startUDP();

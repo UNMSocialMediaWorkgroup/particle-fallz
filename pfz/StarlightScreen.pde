@@ -17,11 +17,14 @@ public class StarlightScreen extends QAUDPHandler
   private static final int STAR_COUNT = 50;
   private static final int SHOOTING_STAR_SPAWN_CHANCE = 50;
 
+  private static final int PULSE_SPAWN_CHANCE = 2000;
+
   private Random rand = new Random();
 
   private StarlightState state = StarlightState.IDLE;
   private int stateFrames = 0;
   private Ray ray;
+  private Pulse pulse = null;
 
   private Queue<Answer> answers =
     new ArrayDeque<Answer>();
@@ -60,8 +63,21 @@ public class StarlightScreen extends QAUDPHandler
     if ((rand.nextInt() % SHOOTING_STAR_SPAWN_CHANCE) == 1) {
       spawnShootingStar();
     }
+
+    if (pulse == null &&
+        ((rand.nextInt() % PULSE_SPAWN_CHANCE) == 1)) {
+      spawnPulse();
+    }
+
     updateShootingStars();
     rockets.update();
+
+    if (pulse != null) {
+      pulse.update();
+      if (!pulse.isAlive()) {
+        pulse = null;
+      }
+    }
 
     /* Conditional updating */
     switch (state) {
@@ -88,9 +104,10 @@ public class StarlightScreen extends QAUDPHandler
   @Override
   public void render() {
     renderBackground();
-    renderGround();
-    renderStars();
     renderShootingStars();
+    renderPulse();
+    renderStars();
+    renderGround();
     renderRockets();
 
     if (state != StarlightState.IDLE) {
@@ -120,6 +137,9 @@ public class StarlightScreen extends QAUDPHandler
            new ShootingStarParticle(rand, WIDTH, HEIGHT));
   }
 
+  private void spawnPulse() {
+    pulse = new Pulse(WIDTH, GROUND_HEIGHT, 0, HEIGHT);
+  }
 
   private void updateStars() {
     for (int i = 0; i < stars.size(); i++) {
@@ -195,5 +215,11 @@ public class StarlightScreen extends QAUDPHandler
 
   private void renderRay() {
     ray.render();
+  }
+
+  private void renderPulse() {
+    if (pulse != null) {
+      pulse.render();
+    }
   }
 }
